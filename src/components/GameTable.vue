@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody >
-        <tr v-for="game in games" :key="game.id" >
+        <tr v-for="game in games" :key="game.id" @click="clickOnGame(game)">
           <td>{{ game.name }}</td>
           <td>{{ game.shortdescription }}</td>
           <td>{{ game.datecreated }}</td>
@@ -32,9 +32,7 @@ export default {
 
   methods: {
     clickOnGame(game) {
-      /* eslint-disable no-console */
-      console.log(game);
-      /* eslint-enable no-console */
+      window.location.replace(`https://api.planets.nu/game/loadinfo?gameid=${game.id}`)
     }
   }
 };

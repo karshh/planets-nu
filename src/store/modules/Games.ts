@@ -1,10 +1,16 @@
+import axios from 'axios';
+
+
+const JOINING_STATUS = 1;
+const GAMES_URL = `https://api.planets.nu/games/list?status=${JOINING_STATUS}`;
 
 export interface Game {
     id: number;
     name: string;
     shortdescription: string;
     datecreated: string;
-    createby: string;
+    createdby: string;
+    hostdays: string;
     haspassword: boolean;
 
 }
@@ -19,14 +25,21 @@ const getters = {
 const actions = {
     async fetchGames(context: { commit: any }) {
         let data = [];
-        for (var i = 1; i < 10; i++) {
-            data.push({ 
-                id: i, 
-                name: "game" + i, 
-                createdby: "asdf", 
-                hostdays: "MTWTF", 
-                shortdescription: "" + Math.random(), datecreated: new Date().getDate().toString(), haspassword: i % 2 == 0 });
-        }
+
+        let response = await axios.get(GAMES_URL)
+        if (!response.data) return;
+
+        data = response.data.map((dt: any): Game => {
+            return {
+                id: dt.id,
+                name: dt.name,
+                haspassword: dt.haspassword,
+                hostdays: dt.hostdays,
+                createdby: dt.createdby == "none" ? null : dt.createdby,
+                shortdescription: dt.shortdescription,
+                datecreated: dt.datecreated
+            }
+        })
 
         context.commit("addGames", data);
     }
