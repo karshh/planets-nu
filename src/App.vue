@@ -1,19 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <GameTable :games="Games" />
   </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts">
+import Vue from 'vue';
+import GameTable from './components/GameTable.vue';
+import { mapGetters, mapActions } from "vuex";
 
-export default {
+export default Vue.extend({
   name: 'app',
   components: {
-    HelloWorld
+    GameTable
+  },
+  methods: {
+  },
+  computed: {
+    ...mapGetters(["Games"])
+  },
+  mounted() {
   }
-}
+});
 </script>
 
 <style>
