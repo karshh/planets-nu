@@ -29,7 +29,6 @@
 export default {
   name: "GameTable",
   props: ["games"],
-
   methods: {
     clickOnGame(game) {
       window.location.href = `https://api.planets.nu/game/loadinfo?gameid=${game.id}`;

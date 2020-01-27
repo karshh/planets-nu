@@ -1,4 +1,5 @@
 import axios from 'axios';
+import moment from 'moment';
 
 
 const JOINING_STATUS = 1;
@@ -31,6 +32,12 @@ const actions = {
 
         // We are going to filter out properties that we dont need and only include the ones that we do. 
         data = response.data.map((dt: any): Game => {
+
+            /* eslint-disable no-console */
+            console.log();
+            /* eslint-enable no-console */
+
+            let datecreated = moment(new Date(dt.datecreated)).format('MMMM Do, YYYY');
             return {
                 id: dt.id,
                 name: dt.name,
@@ -38,7 +45,7 @@ const actions = {
                 hostdays: dt.hostdays,
                 createdby: dt.createdby == "none" ? null : dt.createdby,
                 shortdescription: dt.shortdescription,
-                datecreated: dt.datecreated
+                datecreated
             }
         })
 
