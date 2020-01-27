@@ -3,12 +3,12 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Short Description</th>
-          <th scope="col">Date Created</th>
-          <th scope="col">Created By</th>
-          <th scope="col">Host Days</th>
-          <th scope="col">Password</th>
+          <th>Name</th>
+          <th>Short Description</th>
+          <th>Date Created</th>
+          <th>Created By</th>
+          <th>Host Days</th>
+          <th>Password</th>
         </tr>
       </thead>
       <tbody>
@@ -27,13 +27,17 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Game } from '../store/modules/Games';
+
+const GAME_INFO_URL = (id: number) => `https://api.planets.nu/game/loadinfo?gameid=${id}`
+
 export default {
   name: "GameTable",
   props: ["games"],
   methods: {
-    clickOnGame(game) {
-      window.location.href = `https://api.planets.nu/game/loadinfo?gameid=${game.id}`;
+    clickOnGame(game: Game) {
+      window.location.href = GAME_INFO_URL(game.id);
     }
   }
 };

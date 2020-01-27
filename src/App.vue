@@ -34,6 +34,7 @@ export default Vue.extend({
 </script>
 
 <style>
+/* Keeping default vue style because I find it quite pretty. */
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
