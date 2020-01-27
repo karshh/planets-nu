@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <GameTable :games="Games" />
+    <font-awesome-icon v-if="loading" icon="spinner" />
+    <GameTable  v-else :games="Games" />
   </div>
 </template>
 
@@ -20,8 +21,14 @@ export default Vue.extend({
   computed: {
     ...mapGetters(["Games"])
   },
+  data() {
+    return {
+      loading: true
+    };
+  },
   mounted() {
-    this.fetchGames();
+    this.fetchGames()
+    .finally(() => this.loading = false);
   }
 });
 </script>

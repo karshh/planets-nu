@@ -11,14 +11,16 @@
           <th scope="col">Password</th>
         </tr>
       </thead>
-      <tbody >
+      <tbody>
         <tr v-for="game in games" :key="game.id" @click="clickOnGame(game)">
           <td>{{ game.name }}</td>
           <td>{{ game.shortdescription }}</td>
           <td>{{ game.datecreated }}</td>
           <td>{{ game.createdby }}</td>
           <td>{{ game.hostdays }}</td>
-          <td><font-awesome-icon v-if="game.haspassword " icon="check" /></td>
+          <td>
+            <font-awesome-icon v-if="game.haspassword" icon="check" />
+          </td>
         </tr>
       </tbody>
     </table>
