@@ -29,6 +29,7 @@ const actions = {
         let response = await axios.get(GAMES_URL)
         if (!response.data) return;
 
+        // We are going to filter out properties that we dont need and only include the ones that we do. 
         data = response.data.map((dt: any): Game => {
             return {
                 id: dt.id,

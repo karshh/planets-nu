@@ -18,7 +18,7 @@
           <td>{{ game.datecreated }}</td>
           <td>{{ game.createdby }}</td>
           <td>{{ game.hostdays }}</td>
-          <td>{{ game.haspassword }}</td>
+          <td><font-awesome-icon v-if="game.haspassword " icon="check" /></td>
         </tr>
       </tbody>
     </table>
@@ -32,7 +32,7 @@ export default {
 
   methods: {
     clickOnGame(game) {
-      window.location.replace(`https://api.planets.nu/game/loadinfo?gameid=${game.id}`)
+      window.location.href = `https://api.planets.nu/game/loadinfo?gameid=${game.id}`;
     }
   }
 };
