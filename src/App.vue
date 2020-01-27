@@ -15,11 +15,13 @@ export default Vue.extend({
     GameTable
   },
   methods: {
+    ...mapActions(["fetchGames"])
   },
   computed: {
     ...mapGetters(["Games"])
   },
   mounted() {
+    this.fetchGames();
   }
 });
 </script>
